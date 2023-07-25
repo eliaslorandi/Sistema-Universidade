@@ -14,14 +14,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NOME')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'CH_TOTAL')->textInput() ?>
+    <?= $form->field($model, 'CH_TOTAL')->textInput(['type'=>'number']) ?>
 
-    <?= $form->field($model, 'Q_PERIODOS')->textInput() ?>
+    <?= $form->field($model, 'Q_PERIODOS')->textInput(['type'=>'number']) ?>
 
     <?= $form->field($model, 'SIGLA')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

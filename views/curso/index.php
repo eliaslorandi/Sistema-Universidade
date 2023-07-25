@@ -18,28 +18,53 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Curso', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Novo Curso', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'], //contagem de linhas
 
-            'ID',
+            //'ID',
             'NOME',
             'CH_TOTAL',
             'Q_PERIODOS',
             'SIGLA',
+
+            /*
+            TESTE PARA ALTERAR MENSAGEM DE SPAN QUANDO EXCLUIR CURSO
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->ID], [
+                            'class' => '',
+                            'data' => [
+                                'confirm' => 'Deseja realmente excluir este curso?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+
+                ]
+            ]
+            */
+
+            
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Curso $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'ID' => $model->ID]);
+                    
                  }
             ],
+            
         ],
     ]); ?>
 

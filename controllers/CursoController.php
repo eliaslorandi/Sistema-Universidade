@@ -71,7 +71,7 @@ class CursoController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'ID' => $model->ID]);
+                return $this->redirect(['index']); //, 'ID' => $model->ID
             }
         } else {
             $model->loadDefaultValues();
@@ -94,7 +94,7 @@ class CursoController extends Controller
         $model = $this->findModel($ID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'ID' => $model->ID]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
