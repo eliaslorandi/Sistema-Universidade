@@ -40,6 +40,13 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Curso', 'url' => ['/curso/index']],
+            ['label' => 'Disciplina', 'url' => ['/disciplina/index']],
+            ['label' => 'Matriz', 'url' => ['/matriz/index']],
+            ['label' => 'Núcleo', 'url' => ['/nucleo/index']],
+            ['label' => 'Oferta', 'url' => ['/oferta/index']],
+            ['label' => 'Usuário', 'url' => ['/usuario/index']],
+
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest

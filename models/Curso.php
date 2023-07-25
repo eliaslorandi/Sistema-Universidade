@@ -33,8 +33,8 @@ class Curso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NOME'], 'required'],
-            [['CH_TOTAL', 'Q_PERIODOS'], 'integer'],
+            [['NOME'], 'required', 'message'=>'Preencha um nome!'],
+            [['CH_TOTAL', 'Q_PERIODOS'], 'integer', 'message'=>'Preencha somente com números!'],
             [['NOME'], 'string', 'max' => 99],
             [['SIGLA'], 'string', 'max' => 10],
         ];
@@ -48,8 +48,8 @@ class Curso extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'NOME' => 'Nome',
-            'CH_TOTAL' => 'Ch Total',
-            'Q_PERIODOS' => 'Q Periodos',
+            'CH_TOTAL' => 'Carga Horária Total',
+            'Q_PERIODOS' => 'Quantidade de Periodos',
             'SIGLA' => 'Sigla',
         ];
     }
