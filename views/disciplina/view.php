@@ -29,12 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'ID',
+            //'ID',
             'NOME',
             'CH',
             'PERIODO',
-            'NUCLEO_ID',
-            'MATRIZ_ID',
+            [
+                'attribute'=>'nucleo.NOME', //mesmo na funcao get em models nucleo estando em maiusculo, irá buscar em minusculo
+                'label'=>'Núcleo'
+            ],
+            [
+                'attribute'=>'matriz.SIGLA',
+                'label'=>'Matriz'
+            ],
         ],
     ]) ?>
 

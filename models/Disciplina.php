@@ -61,7 +61,7 @@ class Disciplina extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMATRIZ()
+    public function getMatriz()
     {
         return $this->hasOne(Matriz::class, ['ID' => 'MATRIZ_ID']);
     }
@@ -71,7 +71,7 @@ class Disciplina extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getNUCLEO()
+    public function getNucleo()
     {
         return $this->hasOne(Nucleo::class, ['ID' => 'NUCLEO_ID']);
     }
