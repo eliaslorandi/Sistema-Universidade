@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\OfertaSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Ofertas';
+$this->title = 'Oferta';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oferta-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Oferta', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nova Oferta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,9 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
+            //'ID',
             'SEMESTRE_INICIO',
             'MATRIZ_ID',
             'USUARIO_ID',

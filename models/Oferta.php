@@ -48,9 +48,9 @@ class Oferta extends \yii\db\ActiveRecord
     {
         return [
             'ID' => 'ID',
-            'SEMESTRE_INICIO' => 'Semestre Inicio',
-            'MATRIZ_ID' => 'Matriz ID',
-            'USUARIO_ID' => 'Usuario ID',
+            'SEMESTRE_INICIO' => 'Início do Semestre',
+            'MATRIZ_ID' => 'Matriz',
+            'USUARIO_ID' => 'Usuário',
             'DATA_REGISTRO' => 'Data Registro',
         ];
     }

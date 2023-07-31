@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Nucleo $model */
 
-$this->title = 'Create Nucleo';
+$this->title = 'Novo Núcleo';
 $this->params['breadcrumbs'][] = ['label' => 'Nucleos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

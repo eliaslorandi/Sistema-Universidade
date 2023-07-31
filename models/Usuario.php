@@ -51,7 +51,7 @@ class Usuario extends \yii\db\ActiveRecord
             'LOGIN' => 'Login',
             'SENHA' => 'Senha',
             'NOME' => 'Nome',
-            'NUCLEO_ID' => 'Nucleo ID',
+            'NUCLEO_ID' => 'Núcleo',
         ];
     }
 

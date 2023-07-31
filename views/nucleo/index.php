@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\NucleoSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Nucleos';
+$this->title = 'Núcleo';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nucleo-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Nucleo', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Novo Núcleo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
