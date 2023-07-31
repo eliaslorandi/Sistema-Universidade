@@ -49,9 +49,9 @@ class Disciplina extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'NOME' => 'Nome',
-            'CH' => 'Ch',
-            'PERIODO' => 'Periodo',
-            'NUCLEO_ID' => 'Nucleo ID',
+            'CH' => 'Carga Horária Total',
+            'PERIODO' => 'Período',
+            'NUCLEO_ID' => 'Núcleo',
             'MATRIZ_ID' => 'Matriz ID',
         ];
     }
