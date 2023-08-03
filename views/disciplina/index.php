@@ -1,8 +1,11 @@
 <?php
 
 use app\models\Disciplina;
+use app\models\Matriz;
+use app\models\Nucleo;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
@@ -31,11 +34,38 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\SerialColumn'],
 
             //'ID',
-            'NOME',
+            [
+                'attribute' => 'NOME',
+                'filterInputOptions' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Campo de busca'
+                ],
+
+            ],
+
+
             'CH',
             'PERIODO',
-            'NUCLEO_ID',
-            //'MATRIZ_ID',
+            [
+                'attribute' => 'nucleo.NOME', //mesmo na funcao get em models nucleo estando em maiusculo, irá buscar em minusculo
+                'label' => 'Núcleo',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'nucleo.NOME',                                                  //procurar, mostrar
+                    ArrayHelper::map(Nucleo::find()->asArray()->orderby('NOME')->All(), 'NOME', 'NOME'), //chamar arrayhelper e nucleo
+                    ['class' => 'form-control', 'prompt' => 'Selecione um Núcleo'] //tipo placeholder
+                ),
+            ],
+            [
+                'attribute' => 'matriz.SIGLA',
+                'label' => 'Matriz',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'matriz.SIGLA',
+                    ArrayHelper::map(Matriz::find()->asArray()->orderby('SIGLA')->All(), 'SIGLA', 'SIGLA'),
+                    ['class' => 'form-control', 'prompt' => 'Selecione uma Matriz'] //tipo placeholder
+                ),
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Disciplina $model, $key, $index, $column) {

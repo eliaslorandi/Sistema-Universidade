@@ -11,14 +11,20 @@ use app\models\Disciplina;
  */
 class DisciplinaSearch extends Disciplina
 {
+
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['nucleo.NOME', 'matriz.SIGLA']); //irá mesclar os atributos das duas colulas
+    }
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules() //Dados que foram enviados para pesquisa
     {
         return [
-            [['ID', 'CH', 'PERIODO', 'NUCLEO_ID', 'MATRIZ_ID'], 'integer'],
-            [['NOME'], 'safe'],
+            [['ID', 'CH', 'PERIODO'], 'integer'], //retirado 'NUCLEO_ID', 'MATRIZ_ID' pois foram inseridos abaixo
+            [['NOME', 'nucleo.NOME', 'matriz.SIGLA'], 'safe'], //safe para verificar se é seguro
         ];
     }
 
@@ -47,6 +53,16 @@ class DisciplinaSearch extends Disciplina
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $query->joinWith(['nucleo']); //ORDENAÇÃO (letras em azul)
+        $dataProvider->sort->attributes['nucleo.NOME'] = [
+            'asc' => ['nucleo.NOME' => SORT_ASC],
+            'desc' => ['nucleo.NOME' => SORT_DESC],
+        ];
+        $query->joinWith(['matriz']);
+        $dataProvider->sort->attributes['matriz.SIGLA'] = [
+            'asc' => ['matriz.SIGLA' => SORT_ASC],
+            'desc' => ['matriz.SIGLA' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -66,6 +82,8 @@ class DisciplinaSearch extends Disciplina
         ]);
 
         $query->andFilterWhere(['like', 'NOME', $this->NOME]);
+        $query->andFilterWhere(['like', 'nucleo.NOME', $this->getAttribute('nucleo.NOME')]);
+        $query->andFilterWhere(['like', 'matriz.SIGLA', $this->getAttribute('matriz.SIGLA')]);
 
         return $dataProvider;
     }

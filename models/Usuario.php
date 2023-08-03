@@ -18,7 +18,7 @@ use Yii;
  * @property Nucleo $nUCLEO
  * @property Oferta[] $ofertas
  */
-class Usuario extends \yii\db\ActiveRecord
+class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -94,4 +94,52 @@ class Usuario extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Oferta::class, ['USUARIO_ID' => 'ID']);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new yii\base\UnknownPropertyException();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthKey()
+    {
+        //throw new yii\base\UnknownPropertyException();
+    }
+
+    public function validateAuthKey($authKey) //sem essa, da erro na classe Usuario
+    {
+        //throw new yii\base\UnknownPropertyException();
+    }
+
+    public static function findByUsername($username)
+    {
+        return static::findOne(['LOGIN' => $username]);
+    }
+
+    public function validadePassword($password)
+    {
+        return $this->SENHA === $password;
+    }
+
 }
