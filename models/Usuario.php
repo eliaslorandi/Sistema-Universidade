@@ -132,12 +132,12 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         //throw new yii\base\UnknownPropertyException();
     }
 
-    public static function findByUsername($username)
+    public static function findByUsername($username)//(parametro) não mexer
     {
         return static::findOne(['LOGIN' => $username]);
     }
 
-    public function validadePassword($password)
+    public function validatePassword($password)
     {
         return $this->SENHA === $password;
     }
