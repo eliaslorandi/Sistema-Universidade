@@ -139,7 +139,20 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function validatePassword($password)
     {
-        return $this->SENHA === $password;
+        //return $this->SENHA === $password;
+        //alterado pois agora a senha é salva em hash
+
+        return Yii::$app->getSecurity()->validatePassword($password, $this->SENHA);
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)){
+            $this->SENHA = Yii::$app->getSecurity()->generatePasswordHash($this->SENHA);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
