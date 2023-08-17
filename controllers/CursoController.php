@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Curso;
 use app\models\CursoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * CursoController implements the CRUD actions for Curso model.
@@ -27,6 +30,31 @@ class CursoController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['create', 'delete', 'view', 'update'],
+                    'rules' => [
+                        [
+                            'actions' => ['view'],
+                            'allow' => true,
+                            'roles' => ['?'], //? = deslogado
+                        ],
+                        [
+                            'actions' => ['create', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'], //@ = logado
+                        ],
+                    ],
+
+                    'denyCallback' => function ($rule, $action) {
+                        if (Yii::$app->user->isGuest) {
+                            Yii::$app->user->loginRequired();
+                        } else {
+                            throw new ForbiddenHttpException('Você não tem acesso a esta funcionalidade.');
+                        }
+                    },
+
+                ]
             ]
         );
     }
