@@ -2,10 +2,13 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Oferta;
 use app\models\OfertaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 /**
@@ -27,6 +30,31 @@ class OfertaController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['create', 'delete', 'view', 'update'],
+                    'rules' => [
+                        [
+                            'actions' => ['view'],
+                            'allow' => true,
+                            'roles' => ['?'], //? = deslogado
+                        ],
+                        [
+                            'actions' => ['create', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'], //@ = logado
+                        ],
+                    ],
+
+                    'denyCallback' => function ($rule, $action) {
+                        if (Yii::$app->user->isGuest) {
+                            Yii::$app->user->loginRequired();
+                        } else {
+                            throw new ForbiddenHttpException('Você não tem acesso a esta funcionalidade.');
+                        }
+                    },
+
+                ]
             ]
         );
     }
